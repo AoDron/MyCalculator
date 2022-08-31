@@ -75,13 +75,13 @@ class gik extends JFrame {
     static void updateText(String words){
         text.setText(words);
     }
-    static void updateLabel(byte operation){
+    static void updateLabel(Operation operation){
         switch (operation) {
-            case 0 -> label.setText(" ");
-            case Logic.SUMMATION -> label.setText("+");
-            case Logic.SUBTRACTION -> label.setText("-");
-            case Logic.MULTIPLICATION -> label.setText("*");
-            case Logic.DIVISION -> label.setText("/");
+            case NULL -> label.setText(" ");
+            case SUMMATION -> label.setText("+");
+            case SUBTRACTION -> label.setText("-");
+            case MULTIPLICATION -> label.setText("*");
+            case DIVISION -> label.setText("/");
         }
     }
 

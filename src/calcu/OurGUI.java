@@ -186,10 +186,10 @@ public class OurGUI{
         bSign.addActionListener(e -> Logic.changeSign());
         bDot.addActionListener(e -> Logic.createDot());
 
-        bSum.addActionListener(e -> Logic.registerOperation(Logic.SUMMATION));
-        bSub.addActionListener(e -> Logic.registerOperation(Logic.SUBTRACTION));
-        bMult.addActionListener(e -> Logic.registerOperation(Logic.MULTIPLICATION));
-        bDiv.addActionListener(e -> Logic.registerOperation(Logic.DIVISION));
+        bSum.addActionListener(e -> Logic.registerOperation(Operation.SUMMATION));
+        bSub.addActionListener(e -> Logic.registerOperation(Operation.SUBTRACTION));
+        bMult.addActionListener(e -> Logic.registerOperation(Operation.MULTIPLICATION));
+        bDiv.addActionListener(e -> Logic.registerOperation(Operation.DIVISION));
         bEq.addActionListener(e -> Logic.equals());
 
         bC.addActionListener(e -> Logic.clear(false));

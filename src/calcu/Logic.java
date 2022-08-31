@@ -5,17 +5,12 @@ import java.math.RoundingMode;
 
 public class Logic {
 
-    static final byte SUMMATION = 1;
-    static final byte SUBTRACTION = 2;
-    static final byte MULTIPLICATION = 3;
-    static final byte DIVISION = 4;
-
     private static BigDecimal centralNumber = new BigDecimal(0);
     private static BigDecimal firstNumber = new BigDecimal(0);
     private static byte length = 0;
     private static int dotAmount = 1;
     private static byte dotLength = 0;
-    private static byte currentOperation = 0;
+    private static Operation currentOperation;
     private static boolean isNegative = false;
     private static boolean isDouble = false;
     private static boolean isOperated = false;
@@ -90,7 +85,7 @@ public class Logic {
      * @param operation
      * Number or name of required operation
      */
-    static void registerOperation(byte operation){
+    static void registerOperation(Operation operation){
         if(isOperated) {
             equals();
             isOperated = false;
@@ -106,12 +101,12 @@ public class Logic {
      * Performing a calculation
      */
     static void equals() {
-        if (centralNumber.equals(new BigDecimal(0)) && currentOperation == DIVISION) {
+        if (centralNumber.equals(new BigDecimal(0)) && currentOperation == Operation.DIVISION) {
             clear(false);
             gik.updateText("/ by zero");
         } else {
             switch(currentOperation) {
-                case 0:
+                case NULL:
                     firstNumber = centralNumber;
                     break;
                 case SUMMATION:
@@ -146,7 +141,7 @@ public class Logic {
      * if called with "true" saves entered operation and number in storage (experimental function, unused)
      */
     static void clear(boolean saveCO){
-        if(!saveCO) currentOperation = 0;
+        if(!saveCO) currentOperation = Operation.NULL;
         if(!saveCO) firstNumber = new BigDecimal(0);
         gik.updateLabel(currentOperation);
         centralNumber = new BigDecimal(0);
