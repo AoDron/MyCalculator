@@ -12,7 +12,7 @@ public class Logic {
     private static byte length = 0;
     private static int dotAmount = 1;
     private static byte dotLength = 0;
-    private static Operation currentOperation;
+    private static Operation currentOperation = Operation.NULL;
     private static boolean isNegative = false;
     private static boolean isDouble = false;
     private static boolean isOperated = false;
@@ -198,20 +198,21 @@ public class Logic {
      *  Undoes last entered number or placed dot
      */
     static void backSpace(){
-        if(length > 0) {
-            length--;
-            if (isDouble) {
-                if(dotLength > 0) {
-                    dotAmount /= 10;
-                    dotLength--;
-                    centralNumber = centralNumber.setScale(dotLength, RoundingMode.DOWN);
-                } else {
-                    isDouble = false;
-                    length++;
-                }
-            } else centralNumber = centralNumber.divideToIntegralValue(new BigDecimal(10));
-            if (!computedJustNow) gik.updateText(centralNumber);
-            if (isDouble && dotLength == 0) gik.updateText(centralNumber + ".");
+        StringBuilder sb = new StringBuilder(gik.text.getText());
+        if (sb.toString().equals("0"))
+            return;
+        if (isDouble && dotLength > 0) {
+            dotAmount /= 10;
+            dotLength--;
         }
+        if (!sb.toString().equals("0") && sb.length() != 1) {
+            sb.deleteCharAt(sb.toString().length()-1);
+        } else if (sb.toString().length() ==1 && !sb.toString().equals("0")) {
+            sb.setLength(0);
+            sb.append("0");
+        }
+        centralNumber = BigDecimal.valueOf(Double.parseDouble(sb.toString()));
+        gik.updateText(sb.toString());
+        length--;
     }
 }
