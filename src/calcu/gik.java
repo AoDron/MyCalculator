@@ -11,6 +11,7 @@ class gik extends JFrame {
     static JPanel corners;
     static JTextArea text;
     static JLabel label;
+    private OurGUI gui;
 
     /** Creating a calculator gui
      *  and setting functions
@@ -22,10 +23,11 @@ class gik extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());
-        OurGUI.panels();
+        gui = new OurGUI();
+        gui.panels();
         this.add(corners, BorderLayout.SOUTH);
         this.add(panel, BorderLayout.NORTH);
-        OurGUI.buttons();
+        gui.buttons();
 
         //callers of size refreshing method
         this.addComponentListener(new ComponentListener() {
@@ -54,7 +56,7 @@ class gik extends JFrame {
     private void refreshScale(){
         int height = this.getHeight()/4;
         int mina = Math.min(this.getWidth(), this.getHeight());
-        OurGUI.refreshBttons(mina);
+        gui.refreshButtons(mina);
         text.setFont(new Font("Arial", Font.PLAIN, mina/14));
         label.setFont(new Font("Arial", Font.PLAIN, mina/13));
         panel.setPreferredSize(new Dimension(0, height-39));

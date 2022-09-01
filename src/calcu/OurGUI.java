@@ -9,29 +9,29 @@ import static calcu.gik.*;
 
 public class OurGUI{
 
-    static JButton b1 = new JButton("1");
-    static JButton b2 = new JButton("2");
-    static JButton b3 = new JButton("3");
-    static JButton b4 = new JButton("4");
-    static JButton b5 = new JButton("5");
-    static JButton b6 = new JButton("6");
-    static JButton b7 = new JButton("7");
-    static JButton b8 = new JButton("8");
-    static JButton b9 = new JButton("9");
-    static JButton b0 = new JButton("0");
-    static JButton bSign = new JButton("+/-");
-    static JButton bDot = new JButton(".");
-    static JButton bDiv = new JButton("/");
-    static JButton bMult = new JButton("*");
-    static JButton bSub = new JButton("-");
-    static JButton bSum = new JButton("+");
-    static JButton bBackSpace = new JButton("<-");
-    static JButton bC = new JButton("C");
-    static JButton bCE = new JButton("CE");
-    static JButton bEq = new JButton("=");
+    private JButton b1 = new JButton("1");
+    private JButton b2 = new JButton("2");
+    private JButton b3 = new JButton("3");
+    private JButton b4 = new JButton("4");
+    private JButton b5 = new JButton("5");
+    private JButton b6 = new JButton("6");
+    private JButton b7 = new JButton("7");
+    private JButton b8 = new JButton("8");
+    private JButton b9 = new JButton("9");
+    private JButton b0 = new JButton("0");
+    private JButton bSign = new JButton("+/-");
+    private JButton bDot = new JButton(".");
+    private JButton bDiv = new JButton("/");
+    private JButton bMult = new JButton("*");
+    private JButton bSub = new JButton("-");
+    private JButton bSum = new JButton("+");
+    private JButton bBackSpace = new JButton("<-");
+    private JButton bC = new JButton("C");
+    private JButton bCE = new JButton("CE");
+    private JButton bEq = new JButton("=");
 
 
-    static void panels(){
+     void panels(){
         panel = new JPanel();
         panel.setBackground(Color.white);
         panel.setLayout(new BorderLayout());
@@ -42,7 +42,6 @@ public class OurGUI{
         text.setPreferredSize(new Dimension(100000, 10));
         text.setFont(new Font("Arial", Font.PLAIN, 38));
         text.setMargin(new Insets(10, 10, 10, 10));
-        //text.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         panel.add(text);
 
         label = new JLabel(" ");
@@ -123,8 +122,8 @@ public class OurGUI{
 
     }
 
-    static void buttons(){
-        refreshBttons(500);
+    public void buttons(){
+        refreshButtons(500);
 
         b1.setFocusable(false);
         b2.setFocusable(false);
@@ -196,7 +195,7 @@ public class OurGUI{
         bCE.addActionListener(e -> Logic.clearEnter());
         bBackSpace.addActionListener(e -> Logic.backSpace());
     }
-    static void refreshBttons(int lengh){
+    public void refreshButtons(int lengh){
         int fontSize = lengh/15;
         b1.setFont(new Font("Arial", Font.PLAIN, fontSize));
         b2.setFont(new Font("Arial", Font.PLAIN, fontSize));

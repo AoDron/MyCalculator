@@ -2,6 +2,8 @@ package calcu;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Logic {
 
@@ -16,6 +18,7 @@ public class Logic {
     private static boolean isOperated = false;
     private static boolean operatedJustNow = false;
     private static boolean computedJustNow = false;
+    private static List<String> operationList = new ArrayList<>();
 
     /** Number input implementation
      *
@@ -67,7 +70,7 @@ public class Logic {
     /**
      * Makes number fractional
      */
-    static void createDot(){
+    static void createDot() {
         if(operatedJustNow){
             clearEnter();
             isOperated = true;
@@ -103,29 +106,47 @@ public class Logic {
     static void equals() {
         if (centralNumber.equals(new BigDecimal(0)) && currentOperation == Operation.DIVISION) {
             clear(false);
-            gik.updateText("/ by zero");
+            gik.updateText("fuck you");
         } else {
+            String operation;
             switch(currentOperation) {
                 case NULL:
                     firstNumber = centralNumber;
                     break;
                 case SUMMATION:
+                    operation = firstNumber.floatValue() +" + " + centralNumber.floatValue();
                     firstNumber = firstNumber.add(centralNumber);
+                    operation += " = " + firstNumber.floatValue();
+                    operationList.add(operation);
                     break;
                 case SUBTRACTION:
+                    operation = firstNumber.floatValue() +" - " + centralNumber.floatValue();
                     firstNumber = firstNumber.subtract(centralNumber);
+                    operation += " = " + firstNumber.floatValue();
+                    operationList.add(operation);
                     break;
                 case MULTIPLICATION:
+                    operation = firstNumber.floatValue() +" * " + centralNumber.floatValue();
                     firstNumber = firstNumber.multiply(centralNumber);
+                    operation += " = " + firstNumber.floatValue();
+                    operationList.add(operation);
                     break;
                 case DIVISION:
                     try {
+                        operation = firstNumber.floatValue() +" / " + centralNumber.floatValue();
                         firstNumber = firstNumber.divide(centralNumber);
+                        operation += " = " + firstNumber.floatValue();
+                        operationList.add(operation);
+                        break;
                     } catch (ArithmeticException e) {
+                        operation = firstNumber.floatValue() +" / " + centralNumber.floatValue();
                         firstNumber = firstNumber.divide(centralNumber, 9, RoundingMode.HALF_UP);
+                        operation += " = " + firstNumber.floatValue();
+                        operationList.add(operation);
                     }
                     break;
             }
+            System.out.println(operationList);
             gik.updateText(firstNumber);
             isOperated = false;
             computedJustNow = true;
