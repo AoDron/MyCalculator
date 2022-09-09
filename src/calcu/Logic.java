@@ -10,7 +10,7 @@ public class Logic {
     private static byte length = 0;
     private static int dotAmount = 1;
     private static byte dotLength = 0;
-    private static Operation currentOperation;
+    private static Operation currentOperation = Operation.NULL;
     private static boolean isNegative = false;
     private static boolean isDouble = false;
     private static boolean isOperated = false;
