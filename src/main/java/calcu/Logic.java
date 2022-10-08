@@ -1,29 +1,37 @@
 package calcu;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Objects;
 
+@Data
 public class Logic {
 
-    private static BigDecimal centralNumber = new BigDecimal(0);
-    private static BigDecimal firstNumber = new BigDecimal(0);
-    private static byte length = 0;
-    private static int dotAmount = 1;
-    private static byte dotLength = 0;
-    private static Operation currentOperation = Operation.NULL;
-    private static boolean isNegative = false;
-    private static boolean isDouble = false;
-    private static boolean isOperated = false;
-    private static boolean operatedJustNow = false;
-    private static boolean computedJustNow = false;
+    private BigDecimal centralNumber = new BigDecimal(0);
+    private BigDecimal firstNumber = new BigDecimal(0);
+    private byte length = 0;
+    private int dotAmount = 1;
+    private byte dotLength = 0;
+    private Operation currentOperation = Operation.NULL;
+    private boolean isNegative = false;
+    private boolean isDouble = false;
+    private boolean isOperated = false;
+    private boolean operatedJustNow = false;
+    private boolean computedJustNow = false;
 
-    /** Number input implementation
+    private final Gik gik;
+    public Logic(Gik gik) {
+        this.gik = gik;
+    }
+    /**
+     * Number input implementation
      *
-     * @param num
-     * Enters number "num".
-     * Allowed in range 0-9
+     * @param num Enters number "num".
+     *            Allowed in range 0-9
      */
-    static void inputNumber(int num){
+    public void inputNumber(int num){
         if(operatedJustNow){
             clearEnter();
             isOperated = true;
@@ -52,7 +60,7 @@ public class Logic {
     /**
      * Changes sign of entered number
      */
-    static void changeSign(){
+    public void changeSign(){
         isNegative = !isNegative;
         if(computedJustNow){
             firstNumber = firstNumber.negate();
@@ -67,7 +75,7 @@ public class Logic {
     /**
      * Makes number fractional
      */
-    static void createDot() {
+    public void createDot() {
         if(operatedJustNow){
             clearEnter();
             isOperated = true;
@@ -85,7 +93,7 @@ public class Logic {
      * @param operation
      * Number or name of required operation
      */
-    static void registerOperation(Operation operation){
+    public void registerOperation(Operation operation){
         if(isOperated) {
             equals();
             isOperated = false;
@@ -100,7 +108,7 @@ public class Logic {
     /**
      * Performing a calculation
      */
-    static void equals() {
+    public void equals() {
         if (centralNumber.equals(new BigDecimal(0)) && currentOperation == Operation.DIVISION) {
             clear(false);
             gik.updateText("/ by zero");
@@ -140,7 +148,7 @@ public class Logic {
      * Default: "false"
      * if called with "true" saves entered operation and number in storage (experimental function, unused)
      */
-    static void clear(boolean saveCO){
+    public void clear(boolean saveCO){
         if(!saveCO) currentOperation = Operation.NULL;
         if(!saveCO) firstNumber = new BigDecimal(0);
         gik.updateLabel(currentOperation);
@@ -160,7 +168,7 @@ public class Logic {
      *  Resets entered number.
      *  After performing a calculation resets everything
      */
-    static void clearEnter(){
+    public void clearEnter(){
         if(computedJustNow) clear(false);
         else {
             centralNumber = new BigDecimal(0);
@@ -176,7 +184,7 @@ public class Logic {
     /**
      *  Undoes last entered number or placed dot
      */
-    static void backSpace(){
+    public void backSpace(){
         if(length > 0) {
             length--;
             if (isDouble) {
@@ -192,5 +200,110 @@ public class Logic {
             if (!computedJustNow) gik.updateText(centralNumber);
             if (isDouble && dotLength == 0) gik.updateText(centralNumber + ".");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Logic logic = (Logic) o;
+        return length == logic.length && dotAmount == logic.dotAmount && dotLength == logic.dotLength && isNegative == logic.isNegative && isDouble == logic.isDouble && isOperated == logic.isOperated && operatedJustNow == logic.operatedJustNow && computedJustNow == logic.computedJustNow && currentOperation == logic.currentOperation && Objects.equals(gik, logic.gik);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(length, dotAmount, dotLength, currentOperation, isNegative, isDouble, isOperated, operatedJustNow, computedJustNow, gik);
+    }
+
+    public BigDecimal getCentralNumber() {
+        return centralNumber;
+    }
+
+    public void setCentralNumber(BigDecimal centralNumber) {
+        this.centralNumber = centralNumber;
+    }
+
+    public BigDecimal getFirstNumber() {
+        return firstNumber;
+    }
+
+    public void setFirstNumber(BigDecimal firstNumber) {
+        this.firstNumber = firstNumber;
+    }
+
+    public byte getLength() {
+        return length;
+    }
+
+    public void setLength(byte length) {
+        this.length = length;
+    }
+
+    public int getDotAmount() {
+        return dotAmount;
+    }
+
+    public void setDotAmount(int dotAmount) {
+        this.dotAmount = dotAmount;
+    }
+
+    public byte getDotLength() {
+        return dotLength;
+    }
+
+    public void setDotLength(byte dotLength) {
+        this.dotLength = dotLength;
+    }
+
+    public Operation getCurrentOperation() {
+        return currentOperation;
+    }
+
+    public void setCurrentOperation(Operation currentOperation) {
+        this.currentOperation = currentOperation;
+    }
+
+    public boolean isNegative() {
+        return isNegative;
+    }
+
+    public void setNegative(boolean negative) {
+        isNegative = negative;
+    }
+
+    public boolean isDouble() {
+        return isDouble;
+    }
+
+    public void setDouble(boolean aDouble) {
+        isDouble = aDouble;
+    }
+
+    public boolean isOperated() {
+        return isOperated;
+    }
+
+    public void setOperated(boolean operated) {
+        isOperated = operated;
+    }
+
+    public boolean isOperatedJustNow() {
+        return operatedJustNow;
+    }
+
+    public void setOperatedJustNow(boolean operatedJustNow) {
+        this.operatedJustNow = operatedJustNow;
+    }
+
+    public boolean isComputedJustNow() {
+        return computedJustNow;
+    }
+
+    public void setComputedJustNow(boolean computedJustNow) {
+        this.computedJustNow = computedJustNow;
+    }
+
+    public Gik getGik() {
+        return gik;
     }
 }
