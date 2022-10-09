@@ -25,12 +25,7 @@ public class Logic {
     public Logic(Gik gik) {
         this.gik = gik;
     }
-    /**
-     * Number input implementation
-     *
-     * @param num Enters number "num".
-     *            Allowed in range 0-9
-     */
+
     public void inputNumber(int num){
         if(operatedJustNow){
             clearEnter();
@@ -200,107 +195,6 @@ public class Logic {
             if (!computedJustNow) gik.updateText(centralNumber);
             if (isDouble && dotLength == 0) gik.updateText(centralNumber + ".");
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Logic logic = (Logic) o;
-        return length == logic.length && dotAmount == logic.dotAmount && dotLength == logic.dotLength && isNegative == logic.isNegative && isDouble == logic.isDouble && isOperated == logic.isOperated && operatedJustNow == logic.operatedJustNow && computedJustNow == logic.computedJustNow && currentOperation == logic.currentOperation && Objects.equals(gik, logic.gik);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(length, dotAmount, dotLength, currentOperation, isNegative, isDouble, isOperated, operatedJustNow, computedJustNow, gik);
-    }
-
-    public BigDecimal getCentralNumber() {
-        return centralNumber;
-    }
-
-    public void setCentralNumber(BigDecimal centralNumber) {
-        this.centralNumber = centralNumber;
-    }
-
-    public BigDecimal getFirstNumber() {
-        return firstNumber;
-    }
-
-    public void setFirstNumber(BigDecimal firstNumber) {
-        this.firstNumber = firstNumber;
-    }
-
-    public byte getLength() {
-        return length;
-    }
-
-    public void setLength(byte length) {
-        this.length = length;
-    }
-
-    public int getDotAmount() {
-        return dotAmount;
-    }
-
-    public void setDotAmount(int dotAmount) {
-        this.dotAmount = dotAmount;
-    }
-
-    public byte getDotLength() {
-        return dotLength;
-    }
-
-    public void setDotLength(byte dotLength) {
-        this.dotLength = dotLength;
-    }
-
-    public Operation getCurrentOperation() {
-        return currentOperation;
-    }
-
-    public void setCurrentOperation(Operation currentOperation) {
-        this.currentOperation = currentOperation;
-    }
-
-    public boolean isNegative() {
-        return isNegative;
-    }
-
-    public void setNegative(boolean negative) {
-        isNegative = negative;
-    }
-
-    public boolean isDouble() {
-        return isDouble;
-    }
-
-    public void setDouble(boolean aDouble) {
-        isDouble = aDouble;
-    }
-
-    public boolean isOperated() {
-        return isOperated;
-    }
-
-    public void setOperated(boolean operated) {
-        isOperated = operated;
-    }
-
-    public boolean isOperatedJustNow() {
-        return operatedJustNow;
-    }
-
-    public void setOperatedJustNow(boolean operatedJustNow) {
-        this.operatedJustNow = operatedJustNow;
-    }
-
-    public boolean isComputedJustNow() {
-        return computedJustNow;
-    }
-
-    public void setComputedJustNow(boolean computedJustNow) {
-        this.computedJustNow = computedJustNow;
     }
 
     public Gik getGik() {

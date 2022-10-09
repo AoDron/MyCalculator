@@ -64,13 +64,6 @@ public class Gik extends JFrame {
         gui.getPanel().setPreferredSize(new Dimension(0, height-39));
         corners.setPreferredSize(new Dimension(0, height*3));
     }
-
-//    @Deprecated
-//    public void updateText(double num){
-//        int in = (int) num;
-//        if((in-num) == 0) text.setText(Integer.toString(in));
-//        else text.setText(Double.toString(num));
-//    }
     public void updateText(BigDecimal num){
         if(num.toString().length() > 21)
             text.setText(Double.toString(num.doubleValue()));

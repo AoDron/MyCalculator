@@ -8,28 +8,28 @@ import java.util.Arrays;
 
 public class OurGUI{
 
-    private JButton b1 = new JButton("1");
-    private JButton b2 = new JButton("2");
-    private JButton b3 = new JButton("3");
-    private JButton b4 = new JButton("4");
-    private JButton b5 = new JButton("5");
-    private JButton b6 = new JButton("6");
-    private JButton b7 = new JButton("7");
-    private JButton b8 = new JButton("8");
-    private JButton b9 = new JButton("9");
-    private JButton b0 = new JButton("0");
-    private JButton bSign = new JButton("+/-");
-    private JButton bDot = new JButton(".");
-    private JButton bDiv = new JButton("/");
-    private JButton bMult = new JButton("*");
-    private JButton bSub = new JButton("-");
-    private JButton bSum = new JButton("+");
-    private JButton bBackSpace = new JButton("<-");
-    private JButton bC = new JButton("C");
-    private JButton bCE = new JButton("CE");
-    private JButton bEq = new JButton("=");
-    private Logic logic;
-    private Gik gik;
+    private final JButton b1 = new JButton("1");
+    private final JButton b2 = new JButton("2");
+    private final JButton b3 = new JButton("3");
+    private final JButton b4 = new JButton("4");
+    private final JButton b5 = new JButton("5");
+    private final JButton b6 = new JButton("6");
+    private final JButton b7 = new JButton("7");
+    private final JButton b8 = new JButton("8");
+    private final JButton b9 = new JButton("9");
+    private final JButton b0 = new JButton("0");
+    private final JButton bSign = new JButton("+/-");
+    private final JButton bDot = new JButton(".");
+    private final JButton bDiv = new JButton("/");
+    private final JButton bMult = new JButton("*");
+    private final JButton bSub = new JButton("-");
+    private final JButton bSum = new JButton("+");
+    private final JButton bBackSpace = new JButton("<-");
+    private final JButton bC = new JButton("C");
+    private final JButton bCE = new JButton("CE");
+    private final JButton bEq = new JButton("=");
+    private final Logic logic;
+    private final Gik gik;
     private JPanel panel;
     public OurGUI(Logic logic) {
         this.logic = logic;
@@ -123,7 +123,6 @@ public class OurGUI{
             @Override
             public void keyReleased(KeyEvent e) {}
         });
-
     }
 
     public void buttons(){
@@ -199,6 +198,11 @@ public class OurGUI{
     }
     public void refreshButtons(int lengh){
         int fontSize = lengh/15;
+        setFont0(fontSize, b1, b2, b3, b4, b5, b6, b7, b8, b9, b0);
+        setFont0(fontSize, bSign, bDot, bDiv, bMult, bSub, bSum, bBackSpace, bC, bCE, bEq);
+    }
+
+    private void setFont0(int fontSize, JButton b1, JButton b2, JButton b3, JButton b4, JButton b5, JButton b6, JButton b7, JButton b8, JButton b9, JButton b0) {
         b1.setFont(new Font("Arial", Font.PLAIN, fontSize));
         b2.setFont(new Font("Arial", Font.PLAIN, fontSize));
         b3.setFont(new Font("Arial", Font.PLAIN, fontSize));
@@ -209,192 +213,6 @@ public class OurGUI{
         b8.setFont(new Font("Arial", Font.PLAIN, fontSize));
         b9.setFont(new Font("Arial", Font.PLAIN, fontSize));
         b0.setFont(new Font("Arial", Font.PLAIN, fontSize));
-        bSign.setFont(new Font("Arial", Font.PLAIN, fontSize));
-        bDot.setFont(new Font("Arial", Font.PLAIN, fontSize));
-        bDiv.setFont(new Font("Arial", Font.PLAIN, fontSize));
-        bMult.setFont(new Font("Arial", Font.PLAIN, fontSize));
-        bSub.setFont(new Font("Arial", Font.PLAIN, fontSize));
-        bSum.setFont(new Font("Arial", Font.PLAIN, fontSize));
-        bBackSpace.setFont(new Font("Arial", Font.PLAIN, fontSize));
-        bC.setFont(new Font("Arial", Font.PLAIN, fontSize));
-        bCE.setFont(new Font("Arial", Font.PLAIN, fontSize));
-        bEq.setFont(new Font("Arial", Font.PLAIN, fontSize));
-    }
-
-    public JButton getB1() {
-        return b1;
-    }
-
-    public void setB1(JButton b1) {
-        this.b1 = b1;
-    }
-
-    public JButton getB2() {
-        return b2;
-    }
-
-    public void setB2(JButton b2) {
-        this.b2 = b2;
-    }
-
-    public JButton getB3() {
-        return b3;
-    }
-
-    public void setB3(JButton b3) {
-        this.b3 = b3;
-    }
-
-    public JButton getB4() {
-        return b4;
-    }
-
-    public void setB4(JButton b4) {
-        this.b4 = b4;
-    }
-
-    public JButton getB5() {
-        return b5;
-    }
-
-    public void setB5(JButton b5) {
-        this.b5 = b5;
-    }
-
-    public JButton getB6() {
-        return b6;
-    }
-
-    public void setB6(JButton b6) {
-        this.b6 = b6;
-    }
-
-    public JButton getB7() {
-        return b7;
-    }
-
-    public void setB7(JButton b7) {
-        this.b7 = b7;
-    }
-
-    public JButton getB8() {
-        return b8;
-    }
-
-    public void setB8(JButton b8) {
-        this.b8 = b8;
-    }
-
-    public JButton getB9() {
-        return b9;
-    }
-
-    public void setB9(JButton b9) {
-        this.b9 = b9;
-    }
-
-    public JButton getB0() {
-        return b0;
-    }
-
-    public void setB0(JButton b0) {
-        this.b0 = b0;
-    }
-
-    public JButton getbSign() {
-        return bSign;
-    }
-
-    public void setbSign(JButton bSign) {
-        this.bSign = bSign;
-    }
-
-    public JButton getbDot() {
-        return bDot;
-    }
-
-    public void setbDot(JButton bDot) {
-        this.bDot = bDot;
-    }
-
-    public JButton getbDiv() {
-        return bDiv;
-    }
-
-    public void setbDiv(JButton bDiv) {
-        this.bDiv = bDiv;
-    }
-
-    public JButton getbMult() {
-        return bMult;
-    }
-
-    public void setbMult(JButton bMult) {
-        this.bMult = bMult;
-    }
-
-    public JButton getbSub() {
-        return bSub;
-    }
-
-    public void setbSub(JButton bSub) {
-        this.bSub = bSub;
-    }
-
-    public JButton getbSum() {
-        return bSum;
-    }
-
-    public void setbSum(JButton bSum) {
-        this.bSum = bSum;
-    }
-
-    public JButton getbBackSpace() {
-        return bBackSpace;
-    }
-
-    public void setbBackSpace(JButton bBackSpace) {
-        this.bBackSpace = bBackSpace;
-    }
-
-    public JButton getbC() {
-        return bC;
-    }
-
-    public void setbC(JButton bC) {
-        this.bC = bC;
-    }
-
-    public JButton getbCE() {
-        return bCE;
-    }
-
-    public void setbCE(JButton bCE) {
-        this.bCE = bCE;
-    }
-
-    public JButton getbEq() {
-        return bEq;
-    }
-
-    public void setbEq(JButton bEq) {
-        this.bEq = bEq;
-    }
-
-    public Logic getLogic() {
-        return logic;
-    }
-
-    public void setLogic(Logic logic) {
-        this.logic = logic;
-    }
-
-    public Gik getGik() {
-        return gik;
-    }
-
-    public void setGik(Gik gik) {
-        this.gik = gik;
     }
 
     public JPanel getPanel() {
